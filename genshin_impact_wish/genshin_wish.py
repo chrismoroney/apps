@@ -54,7 +54,7 @@ print(five_star_pity)
 
 while still_pulling:
 
-    command = input("Please enter 1 or 10: ")
+    command = str(input("Please enter 1 or 10: "))
 
     if command == "1":
         pull_one()
@@ -62,3 +62,4 @@ while still_pulling:
         pull_ten()
     else:
         still_pulling = False
+        
