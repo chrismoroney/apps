@@ -40,25 +40,58 @@ def win():
 
 def lose():
         money -= wager
-        
+
+def score_hand(cards):
+        score = 0
+        for card in cards:
+                match card[1]:
+                        case 'A':
+                                score += 1
+                        case '2':
+                                score += 2
+                        case '3':
+                                score += 3
+                        case '4':
+                                score += 4
+                        case '5':
+                                score += 5
+                        case '6':
+                                score += 6
+                        case '7':
+                                score += 7
+                        case '8':
+                                score += 8
+                        case '9':
+                                score += 9
+                        case '1' | 'J' | 'Q' | 'K':
+                                score += 10
+        return score
+
 
 def play_game():
         hand_size = 2
         play_continue = True
 
         while hand_size < 5 and play_continue:
+                score = score_hand(cards)
+                print("Score: ", score)
                 command = input("hit or stay: ")
                 if command == "hit":
                         card = random.choice(deck)
                         cards.append(card)
                         deck.remove(card)
+
                         print(cards)
                         hand_size = len(cards)
+
                 elif command == "stay":
                         play_continue = False
+        
+        score = score_hand(cards)
+        print("Score: ", score)
         quit()
 
 while True:
-        wager_func()
+        #wager_func()
         play_game()
 
