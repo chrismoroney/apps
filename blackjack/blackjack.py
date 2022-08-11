@@ -1,5 +1,8 @@
 import random
 
+money = 100
+wager = 0
+
 deck = ["|A%|", "|A<3|", "|A@|", "|A^|",
         "|2%|", "|2<3|", "|2@|", "|2^|",
         "|3%|", "|3<3|", "|3@|", "|3^|",
@@ -20,7 +23,26 @@ for card in cards:
         deck.remove(card)
 print(cards)
 
-while True:
+def wager_func():
+        print("Total money: $", money)
+        wager = input("Enter amount you want to wager: ")
+        if not isinstance(wager, int):
+                print("Please input an integer.")
+                wager_func()
+        elif wager > money:
+                print("Please input an integer that is less than your total money.")
+                wager_func()
+        elif wager <= 0:
+                print("Please input a value greater than 0.")
+
+def win():
+        money += wager
+
+def lose():
+        money -= wager
+        
+
+def play_game():
         hand_size = 2
         play_continue = True
 
@@ -35,3 +57,8 @@ while True:
                 elif command == "stay":
                         play_continue = False
         quit()
+
+while True:
+        wager_func()
+        play_game()
+
