@@ -26,20 +26,25 @@ print(cards)
 def wager_func():
         print("Total money: $", money)
         wager = input("Enter amount you want to wager: ")
-        if not isinstance(wager, int):
+        try:
+                wager = int(wager)
+        except ValueError:
                 print("Please input an integer.")
                 wager_func()
-        elif wager > money:
+        if wager > money:
                 print("Please input an integer that is less than your total money.")
                 wager_func()
         elif wager <= 0:
                 print("Please input a value greater than 0.")
+        else:
+                return wager
 
 def win():
         money += wager
 
-def lose():
+def lose(money, wager):
         money -= wager
+        return money
         
 
 def play_game():
@@ -56,9 +61,12 @@ def play_game():
                         hand_size = len(cards)
                 elif command == "stay":
                         play_continue = False
-        quit()
+        
 
 while True:
-        wager_func()
+        wager = wager_func()
         play_game()
+        new_amount = lose(money, wager)
+        print(new_amount)
+        quit()
 
