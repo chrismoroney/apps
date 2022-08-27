@@ -49,27 +49,26 @@ def lose(money, wager):
 def score_hand(cards):
         score = 0
         for card in cards:
-                match card[1]:
-                        case 'A':
-                                score += 1
-                        case '2':
-                                score += 2
-                        case '3':
-                                score += 3
-                        case '4':
-                                score += 4
-                        case '5':
-                                score += 5
-                        case '6':
-                                score += 6
-                        case '7':
-                                score += 7
-                        case '8':
-                                score += 8
-                        case '9':
-                                score += 9
-                        case '1' | 'J' | 'Q' | 'K':
-                                score += 10
+                if card[1] == 'A':
+                        score += 1
+                if card[1] == '2':
+                        score += 2
+                if card[1] == '3':
+                        score += 3
+                if card[1] == '4':
+                        score += 4
+                if card[1] == '5':
+                        score += 5
+                if card[1] == '6':
+                        score += 6
+                if card[1] == '7':
+                        score += 7
+                if card[1] == '8':
+                        score += 8
+                if card[1] == '9':
+                        score += 9
+                if card[1] == '1' or card[1] =='J' or card[1] =='Q' or card[1] =='K':
+                        score += 10
         return score
 
 
@@ -94,10 +93,9 @@ def play_game():
 
         score = score_hand(cards)
         print("Score: ", score)
-        quit()
 
 while True:
-        #wager_func()
+        wager = wager_func()
         play_game()
         new_amount = lose(money, wager)
         print(new_amount)
